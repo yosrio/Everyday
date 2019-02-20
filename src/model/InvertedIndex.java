@@ -57,12 +57,26 @@ public class InvertedIndex {
         return list;
     }
 
-    public ArrayList<Posting> search(String kunci) {
-        makeDictionary();
-        String tempQuery[] = kunci.
+//    public ArrayList<Posting> search(String kunci) {
+//        makeDictionary();
+//        String tempQuery[] = kunci.split(" ");
+//        for (int i = 0; i < tempQuery.length; i++) {
+//            String string = tempQuery[i];
+//            Term tempTerm = new Term(string);
+//            if (getDictionary().isEmpty()) {
+//                return null;
+//            }else{
+//                int positionTerm = Collections.binarySearch(dictionary, tempTerm);
+//            }
+//        }
+//        return null;
+//    }
+    
+    public ArrayList<Posting> intersection(ArrayList<Posting> p1, ArrayList<Posting> p2){
+        
         return null;
     }
-
+    
     public ArrayList<Posting> searchOneWord(String kunci) {
         Term tempTerm = new Term(kunci);
         if (getDictionary().isEmpty()) {
