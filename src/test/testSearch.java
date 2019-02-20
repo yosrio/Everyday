@@ -15,7 +15,7 @@ import model.Term;
  *
  * @author admin
  */
-public class testInvertedIndex {
+public class testSearch {
 
     /**
      * @param args the command line arguments
@@ -35,9 +35,8 @@ public class testInvertedIndex {
             System.out.println(tempTerm.getTerm() + "," +
                     tempTerm.getNumberOfDocument());
             for (int j = 0; j < tempTerm.getNumberOfDocument(); j++) {
-                Posting tempPosting = tempTerm.getPostingList().get(j);
+                Posting tempPosting = tempTerm.getPostingList().get(i);
                 Document tempDoc = tempPosting.getDocument();
-                System.out.println("idDoc = " + tempDoc.getId());
             }
         }
     }

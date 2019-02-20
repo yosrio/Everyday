@@ -57,24 +57,44 @@ public class InvertedIndex {
         return list;
     }
 
+    public ArrayList<Posting> search(String kunci) {
+        
+        return null;
+    }
+
+    private ArrayList<Posting> searchOneWord(String kunci) {
+        makeDictionary();
+        ArrayList<Posting> list = this.getSortedPostingList();
+        Term cari = new Term(kunci);
+        if (getDictionary().isEmpty()) {
+            return null;
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                int position = Collections.binarySearch(getDictionary(), cari);
+            }
+        }
+        return list;
+    }
+
     public void makeDictionary() {
         ArrayList<Posting> list = this.getSortedPostingList();
 
         for (int i = 0; i < list.size(); i++) {
-            if (dictionary.isEmpty()) {
+            if (getDictionary().isEmpty()) {
                 Term term = new Term(list.get(i).getTerm());
                 term.getPostingList().add(list.get(i));
-            }else{
+                getDictionary().add(term);
+            } else {
                 Term tempTerm = new Term(list.get(i).getTerm());
-                int position = Collections.binarySearch(dictionary, tempTerm);
+                int position = Collections.binarySearch(getDictionary(), tempTerm);
                 if (position < 0) {
                     tempTerm.getPostingList().add(list.get(i));
-                    dictionary.add(tempTerm);
-                }else{
-                    dictionary.get(position).getPostingList().add(list.get(i));
-                    Collections.sort(dictionary.get(position).getPostingList());
+                    getDictionary().add(tempTerm);
+                } else {
+                    getDictionary().get(position).getPostingList().add(list.get(i));
+                    Collections.sort(getDictionary().get(position).getPostingList());
                 }
-                Collections.sort(dictionary);
+                Collections.sort(getDictionary());
             }
         }
     }
