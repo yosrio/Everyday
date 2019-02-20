@@ -16,6 +16,10 @@ public class Term {
     private String term;
     private ArrayList<Posting> postingList = new ArrayList<Posting>();
     
+    public Term(){
+        
+    }
+    
     public Term(String term){
         this.term = term;
     }
