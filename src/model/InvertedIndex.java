@@ -58,22 +58,23 @@ public class InvertedIndex {
     }
 
     public ArrayList<Posting> search(String kunci) {
-        
+        makeDictionary();
+        String tempQuery[] = kunci.
         return null;
     }
 
-    private ArrayList<Posting> searchOneWord(String kunci) {
-        makeDictionary();
-        ArrayList<Posting> list = this.getSortedPostingList();
-        Term cari = new Term(kunci);
+    public ArrayList<Posting> searchOneWord(String kunci) {
+        Term tempTerm = new Term(kunci);
         if (getDictionary().isEmpty()) {
             return null;
         } else {
-            for (int i = 0; i < list.size(); i++) {
-                int position = Collections.binarySearch(getDictionary(), cari);
+            int positionTerm = Collections.binarySearch(dictionary, tempTerm);
+            if (positionTerm < 0) {
+                return null;
+            } else {
+                return dictionary.get(positionTerm).getPostingList();
             }
         }
-        return list;
     }
 
     public void makeDictionary() {
