@@ -95,7 +95,7 @@ public class InvertedIndex {
 
     public void toShow() {
         for (int i = 0; i < this.listOfTerm.size(); i++) {
-            System.out.print(this.listOfTerm.get(i).getTerm() + " = ");
+            System.out.print(this.listOfTerm.get(i).getTerm() + " > ");
             for (int j = 0; j < this.listOfTerm.get(i).getPostingList().size(); j++) {
                 if (j < this.listOfTerm.get(i).getPostingList().size()-1) {
                     System.out.print(this.listOfTerm.get(i).getPostingList().get(j).getDocument().getId() + ", ");
