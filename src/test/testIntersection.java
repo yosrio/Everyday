@@ -33,7 +33,7 @@ public class testIntersection {
 
         index.makeDictionary();
        
-        String query = "machine Learning";
+        String query = "machine coba";
 
         ArrayList<Posting> postings = index.search(query);
 

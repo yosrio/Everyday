@@ -71,6 +71,7 @@ public class InvertedIndex {
 //            return intersection(posting.get(0), posting.get(1));
 //        }
 //    }
+    
     public ArrayList<Posting> search(String kunci) {
         makeDictionary();
         String[] q = kunci.split(" ");
@@ -83,6 +84,10 @@ public class InvertedIndex {
     }
 
     public ArrayList<Posting> intersection(ArrayList<Posting> p1, ArrayList<Posting> p2) {
+        if (p1 == null || p2 == null) {
+            return new ArrayList<>();
+        }
+        
         ArrayList<Posting> posting = new ArrayList<>();
         int index_p1 = 0;
         int index_p2 = 0;
