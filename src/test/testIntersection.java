@@ -32,14 +32,26 @@ public class testIntersection {
         index.addNewDocument(doc3);
 
         index.makeDictionary();
-       
-        String query = "machine coba";
+
+        String query = "machine Learning";
 
         ArrayList<Posting> postings = index.search(query);
 
+//        for (int i = 0; i < postings.size(); i++) {
+//            System.out.println((i + 1) + ". " + postings.get(i).getDocument().getContent());
+//        }
         for (int i = 0; i < postings.size(); i++) {
-            System.out.println((i + 1) + ". " + postings.get(i).getDocument().getContent());
+            if (i == 0) {
+                System.out.println("id_doc = " + postings.get(i).getDocument().getId());
+                System.out.println((i + 1) + ". " + postings.get(i).getDocument().getContent());
+            } else if (i >= 1) {
+                if (!postings.get(i - 1).getDocument().getContent().equals(postings.get(i).getDocument().getContent())) {
+                System.out.println("id_doc = " + postings.get(i).getDocument().getId());
+                System.out.println((i + 1) + ". " + postings.get(i).getDocument().getContent());
+                } else {
+                    break;
+                }
+            }
         }
     }
-
 }
