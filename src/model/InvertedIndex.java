@@ -57,19 +57,29 @@ public class InvertedIndex {
         return list;
     }
 
+//    public ArrayList<Posting> search(String kunci) {
+//        makeDictionary();
+//        String[] q = kunci.split(" ");
+//        ArrayList<ArrayList<Posting>> posting = new ArrayList<>();
+//        if (q.length <= 0) {
+//            System.out.println("Masukan 2 kata!");
+//            return new ArrayList<>();
+//        } else{
+//            for (int i = 0; i < q.length; i++) {
+//                posting.add(searchOneWord(q[i]));
+//            }
+//            return intersection(posting.get(0), posting.get(1));
+//        }
+//    }
     public ArrayList<Posting> search(String kunci) {
         makeDictionary();
         String[] q = kunci.split(" ");
         ArrayList<ArrayList<Posting>> posting = new ArrayList<>();
-        if (q.length <= 0) {
-            System.out.println("Masukan 2 kata!");
-            return new ArrayList<>();
-        } else {
-            for (int i = 0; i < q.length; i++) {
-                posting.add(searchOneWord(q[i]));
-            }
-            return intersection(posting.get(0), posting.get(1));
+        
+        for (int i = 0; i < q.length; i++) {
+            posting.add(searchOneWord(q[i]));
         }
+        return intersection(posting.get(0), posting.get(1));
     }
 
     public ArrayList<Posting> intersection(ArrayList<Posting> p1, ArrayList<Posting> p2) {
