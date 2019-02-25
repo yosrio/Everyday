@@ -12,7 +12,7 @@ import model.Posting;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class testDocument2 {
 

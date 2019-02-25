@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class Term implements Comparable<Term>{
     private String term;

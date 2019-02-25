@@ -15,7 +15,7 @@ import java.util.ListIterator;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class InvertedIndex {
 

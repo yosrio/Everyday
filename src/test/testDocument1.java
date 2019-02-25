@@ -9,7 +9,7 @@ import model.Document;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class testDocument1 {
     public static void main(String[] args) {

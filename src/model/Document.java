@@ -8,7 +8,7 @@ package model;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class Document {
     private int id;

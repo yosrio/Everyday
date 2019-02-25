@@ -13,7 +13,7 @@ import model.Term;
 
 /**
  *
- * @author admin
+ * @author Yos Rio
  */
 public class testIntersection {
 
