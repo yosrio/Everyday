@@ -84,14 +84,19 @@ public class InvertedIndex {
     }
 
     public ArrayList<Posting> intersection(ArrayList<Posting> p1, ArrayList<Posting> p2) {
+        
+        //kalau salah satu kata adalah null maka tidak menghasilkan apa-apa,
+        //jadi return saja new ArrayList<>() buat nilai baliknya
         if (p1 == null || p2 == null) {
             return new ArrayList<>();
         }
         
         ArrayList<Posting> posting = new ArrayList<>();
+        //nilai awal untuk indeks p1 dan p2
         int index_p1 = 0;
         int index_p2 = 0;
 
+        
         Posting post1 = p1.get(index_p1);
         Posting post2 = p2.get(index_p2);
 

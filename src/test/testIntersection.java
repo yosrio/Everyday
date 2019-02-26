@@ -33,9 +33,12 @@ public class testIntersection {
 
         index.makeDictionary();
 
-        String query = "machine Learning";
+        String query = "computer retrieval";
 
         ArrayList<Posting> postings = index.search(query);
+//        ArrayList<Posting> r1 = index.searchOneWord("machine");
+//        ArrayList<Posting> r2 = index.searchOneWord("learning");
+//        ArrayList<Posting> postings = index.intersection(r1, r2);
 
 //        for (int i = 0; i < postings.size(); i++) {
 //            System.out.println((i + 1) + ". " + postings.get(i).getDocument().getContent());
