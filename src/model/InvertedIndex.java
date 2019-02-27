@@ -39,19 +39,57 @@ public class InvertedIndex {
                 Posting tempPosting = new Posting(termResult[j], listOfDocument.get(i));
                 list.add(tempPosting);
             }
-                System.out.println(" " + termResult.length);
         }
         return list;
     }
 
     public ArrayList<Posting> getSortedPostingList() {
-        // siapkan posting List
         ArrayList<Posting> list = new ArrayList<Posting>();
-        // panggil list yang belum terurut
         list = this.getUnsortedPostingList();
-        // urutkan
         Collections.sort(list);
         return list;
+    }
+    
+    public ArrayList<Posting> getUnsortedPostingListWithTermNumber() {
+        ArrayList<Posting> list = new ArrayList<Posting>();
+        for (int i = 0; i < listOfDocument.size(); i++) {
+            ArrayList<Posting> postingDoc = listOfDocument.get(i).getListofPosting();
+            for (int j = 0; j < postingDoc.size(); j++) {
+                Posting tempPosting = postingDoc.get(j);
+                list.add(tempPosting);
+            }
+        }
+        return list;
+    }
+    
+    public ArrayList<Posting> getSortedPostingListWithTermNumber() {
+        ArrayList<Posting> list = new ArrayList<Posting>();
+        list = this.getUnsortedPostingListWithTermNumber();
+        Collections.sort(list);
+        return list;
+    }
+    
+    public void makeDictionaryWithTermNumber() {
+        ArrayList<Posting> list = this.getSortedPostingListWithTermNumber();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (getDictionary().isEmpty()) {
+                Term term = new Term(list.get(i).getTerm());
+                term.getPostingList().add(list.get(i));
+                getDictionary().add(term);
+            } else {
+                Term tempTerm = new Term(list.get(i).getTerm());
+                int position = Collections.binarySearch(getDictionary(), tempTerm);
+                if (position < 0) {
+                    tempTerm.getPostingList().add(list.get(i));
+                    getDictionary().add(tempTerm);
+                } else {
+                    getDictionary().get(position).getPostingList().add(list.get(i));
+                    Collections.sort(getDictionary().get(position).getPostingList());
+                }
+                Collections.sort(getDictionary());
+            }
+        }
     }
     
     public int getDocFreq(String term){
