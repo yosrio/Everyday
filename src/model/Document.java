@@ -7,6 +7,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -51,7 +52,25 @@ public class Document {
     }
     
     public ArrayList<Posting> getListofPosting(){
+        String [] tempString = getListofTerm();
+        ArrayList<Posting> list = new ArrayList<>();
+        for (int i = 0; i < tempString.length; i++) {
+            if (i == 0) {
+                Posting tempPosting = new Posting(tempString[0],this);
+                list.add(tempPosting);
+            } else{
+                Collections.sort(list);
+                Posting tempPosting = new Posting(tempString[i],this);
+                int indexCari = Collections.binarySearch(list, tempPosting);
+                if (indexCari < 0) {
+                    list.add(tempPosting);
+                } else{
+                    int tempNumber = list.get(indexCari).getNumberOfTerm()+1;
+                    list.get(indexCari).setNumberOfTerm(tempNumber);
+                }
+            }
+        }
         
-        return null;
+        return list;
     }
 }
