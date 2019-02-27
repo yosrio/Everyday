@@ -13,6 +13,8 @@ package model;
 public class Posting implements Comparable<Posting>{
     private String term;
     private Document document;
+    private int numberOfTerm = 1;
+    
 
     public Posting(String term, Document document) {
         this.term = term;
@@ -42,5 +44,13 @@ public class Posting implements Comparable<Posting>{
     @Override
     public int compareTo(Posting o) {
        return this.term.compareTo(o.term);
+    }
+    
+    public int getNumberOfTerm() {
+        return numberOfTerm;
+    }
+
+    public void setNumberOfTerm(int numberOfTerm) {
+        this.numberOfTerm = numberOfTerm;
     }
 }

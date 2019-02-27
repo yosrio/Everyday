@@ -6,6 +6,8 @@
 
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yos Rio
@@ -48,4 +50,8 @@ public class Document {
         return value.split(" ");
     }
     
+    public ArrayList<Posting> getListofPosting(){
+        
+        return null;
+    }
 }

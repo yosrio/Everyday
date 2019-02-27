@@ -39,22 +39,32 @@ public class InvertedIndex {
                 Posting tempPosting = new Posting(termResult[j], listOfDocument.get(i));
                 list.add(tempPosting);
             }
+                System.out.println(" " + termResult.length);
         }
         return list;
     }
 
     public ArrayList<Posting> getSortedPostingList() {
+        // siapkan posting List
         ArrayList<Posting> list = new ArrayList<Posting>();
-
-        for (int i = 0; i < listOfDocument.size(); i++) {
-            String[] termResult = listOfDocument.get(i).getListofTerm();
-            for (int j = 0; j < termResult.length; j++) {
-                Posting tempPosting = new Posting(termResult[j], listOfDocument.get(i));
-                list.add(tempPosting);
-            }
-        }
+        // panggil list yang belum terurut
+        list = this.getUnsortedPostingList();
+        // urutkan
         Collections.sort(list);
         return list;
+    }
+    
+    public int getDocFreq(String term){
+        ArrayList<Posting> result = new ArrayList<>();
+        for (int i = 0; i < listOfDocument.size(); i++) {
+            
+        }
+        
+        return 0;
+    }
+    
+    public double getInverseDocFreq(String term){
+        return 0.0;
     }
     
 //    public ArrayList<Posting> search(String kunci) {
@@ -69,7 +79,6 @@ public class InvertedIndex {
 //    }
     
     public ArrayList<Posting> search(String kunci) {
-//        makeDictionary();
         String[] q = kunci.split(" ");
         ArrayList<Posting> result = new ArrayList<>();
         for (int i = 0; i < q.length; i++) {
@@ -85,18 +94,13 @@ public class InvertedIndex {
     }
 
     public ArrayList<Posting> intersection(ArrayList<Posting> p1, ArrayList<Posting> p2) {
-        
-        //kalau salah satu kata adalah null maka tidak menghasilkan apa-apa,
-        //jadi return saja new ArrayList<>() buat nilai baliknya
         if (p1 == null || p2 == null) {
             return new ArrayList<>();
         }
         
         ArrayList<Posting> posting = new ArrayList<>();
-        //nilai awal untuk indeks p1 dan p2
         int index_p1 = 0;
         int index_p2 = 0;
-
         
         Posting post1 = p1.get(index_p1);
         Posting post2 = p2.get(index_p2);
@@ -167,7 +171,7 @@ public class InvertedIndex {
             }
         }
     }
-
+    
     public ArrayList<Document> getListOfDocument() {
         return listOfDocument;
     }
