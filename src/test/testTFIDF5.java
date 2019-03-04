@@ -44,13 +44,10 @@ public class testTFIDF5 {
         }
         System.out.println("====================================");
         // number of document
-        String tempString = "silver";
+        String tempString = "damaged";
         int result2 = index.getDocFreq(tempString);
         System.out.println("Number of Doc with " + tempString + " is " + result2);
-
-        // idf
-        String tempString1 = "silver";
-        double result3 = index.getDocFreq(tempString1);
-        System.out.println("IDF of " + tempString1 + " is " + result3);
+        double result3 = index.getInverseDocFreq(tempString);
+        System.out.println("IDF of " + tempString + " is " + result3);
     }
 }

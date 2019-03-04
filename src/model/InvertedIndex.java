@@ -93,28 +93,29 @@ public class InvertedIndex {
     }
     
     public int getDocFreq(String term){
-        ArrayList<Posting> result = new ArrayList<>();
-        for (int i = 0; i < listOfDocument.size(); i++) {
-            
+        ArrayList<Term> result = getDictionary();
+        int count = 0;
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).getTerm().equals(term)) {
+                count = result.get(i).getNumberOfDocument();
+            }
         }
+        return count;
+    }
+    
+    public double getInverseDocFreq(String term){
+        double n = getDocFreq(term);
+        double N = listOfDocument.size();
+        System.out.println(n);
+        System.out.println(N);
+        return Math.log10(N/n);
+    }
+    
+    public int getTermFreq(String term, int idDoc){
         
         return 0;
     }
     
-    public double getInverseDocFreq(String term){
-        return 0.0;
-    }
-    
-//    public ArrayList<Posting> search(String kunci) {
-//        makeDictionary();
-//        String[] q = kunci.split(" ");
-//        ArrayList<ArrayList<Posting>> posting = new ArrayList<>();
-//        
-//        for (int i = 0; i < q.length; i++) {
-//            posting.add(searchOneWord(q[i]));
-//        }
-//        return intersection(posting.get(0), posting.get(1));
-//    }
     
     public ArrayList<Posting> search(String kunci) {
         String[] q = kunci.split(" ");
