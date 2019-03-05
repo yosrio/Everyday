@@ -44,12 +44,12 @@ public class testTFIDF6 {
         }
 
         // number of document
-        String tempString = "truck";
+        String tempString = "silver";
         int result2 = index.getDocFreq(tempString);
         System.out.println("Number of Doc with " + tempString + " is " + result2);
         double result3 = index.getInverseDocFreq(tempString);
         System.out.println("IDF of " + tempString + " is " + result3);
-        int idDoc = 3;
+        int idDoc = 2;
         int result4 = index.getTermFreq(tempString, idDoc);
         System.out.println("TF of " + tempString + " in idDoc =" + idDoc + " is " + result4);
     }
