@@ -5,6 +5,7 @@
  */
 package model;
 
+import com.sun.org.apache.xerces.internal.util.DOMUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -93,23 +94,23 @@ public class InvertedIndex {
     }
     
     public int getDocFreq(String term){
-//        ArrayList<Term> result = getDictionary();
-//        int count = 0;
-//        for (int i = 0; i < result.size(); i++) {
-//            if (result.get(i).getTerm().equals(term)) {
-//                count = result.get(i).getNumberOfDocument();
-//            }
-//        }
-//        return count;
-        
-        Term tempTerm = new Term(term);
-        int index = Collections.binarySearch(dictionary, tempTerm);
-        if (index > 0) {
-            ArrayList<Posting> tempPost = dictionary.get(index).getPostingList();
-            return tempPost.size();
-        }else{
-            return 0;
+        ArrayList<Term> result = getDictionary();
+        int count = 0;
+        for (int i = 0; i < result.size(); i++) {
+            if (result.get(i).getTerm().equals(term)) {
+                count = result.get(i).getNumberOfDocument();
+            }
         }
+        return count;
+        
+//        Term tempTerm = new Term(term);
+//        int index = Collections.binarySearch(dictionary, tempTerm);
+//        if (index > 0) {
+//            ArrayList<Posting> tempPost = dictionary.get(index).getPostingList();
+//            return tempPost.size();
+//        }else{
+//            return -1;
+//        }
     }
     
     public double getInverseDocFreq(String term){
@@ -118,10 +119,31 @@ public class InvertedIndex {
         System.out.println(n);
         System.out.println(N);
         return Math.log10(N/n);
+//        Term tempTerm = new Term(term);
+//        int index = Collections.binarySearch(dictionary, tempTerm);
+//        if (index > 0) {
+//            int N = listOfDocument.size();
+//            int ni = getDocFreq(term);
+//            return Math.log10(N/ni);
+//        }else{
+//            return 0.0;
+//        }
     }
     
     public int getTermFreq(String term, int idDoc){
-        
+        Document doc = new Document();
+        doc.setId(idDoc);
+        int index = Collections.binarySearch(listOfDocument, doc);
+        if (index >= 0) {
+            ArrayList<Posting> tempPost = getListOfDocument().get(index).getListofPosting();
+            Posting post = new Posting();
+            post.setTerm(term);
+            int postIndex = Collections.binarySearch(tempPost, post);
+            if (postIndex > 0) {
+                return tempPost.get(postIndex).getNumberOfTerm();
+            }
+            return 0;
+        }
         return 0;
     }
     
