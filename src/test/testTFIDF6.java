@@ -42,15 +42,19 @@ public class testTFIDF6 {
                         + ", numberofTerm = " + tempPosting.get(j).getNumberOfTerm());
             }
         }
-
         // number of document
         String tempString = "silver";
         int result2 = index.getDocFreq(tempString);
         System.out.println("Number of Doc with " + tempString + " is " + result2);
-        double result3 = index.getInverseDocFreq(tempString);
-        System.out.println("IDF of " + tempString + " is " + result3);
-        int idDoc = 2;
-        int result4 = index.getTermFreq(tempString, idDoc);
-        System.out.println("TF of " + tempString + " in idDoc =" + idDoc + " is " + result4);
+
+        // idf
+        String tempString1 = "arrived";
+        double result3 = index.getInverseDocFreq(tempString1);
+        System.out.println("IDF of " + tempString1 + " is " + result3);
+
+        String tempString2 = "fire";
+        int idDoc = 1;
+        int result4 = index.getTermFreq(tempString2, idDoc);
+        System.out.println("TF of " + tempString2 + " in idDoc =" + idDoc + " is " + result4);
     }
 }

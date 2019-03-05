@@ -50,7 +50,7 @@ public class InvertedIndex {
         Collections.sort(list);
         return list;
     }
-    
+
     public ArrayList<Posting> getUnsortedPostingListWithTermNumber() {
         ArrayList<Posting> list = new ArrayList<Posting>();
         for (int i = 0; i < listOfDocument.size(); i++) {
@@ -62,14 +62,14 @@ public class InvertedIndex {
         }
         return list;
     }
-    
+
     public ArrayList<Posting> getSortedPostingListWithTermNumber() {
         ArrayList<Posting> list = new ArrayList<Posting>();
         list = this.getUnsortedPostingListWithTermNumber();
         Collections.sort(list);
         return list;
     }
-    
+
     public void makeDictionaryWithTermNumber() {
         ArrayList<Posting> list = this.getSortedPostingListWithTermNumber();
 
@@ -92,7 +92,7 @@ public class InvertedIndex {
             }
         }
     }
-    
+
     public ArrayList<Posting> search(String kunci) {
         String[] q = kunci.split(" ");
         ArrayList<Posting> result = new ArrayList<>();
@@ -112,11 +112,11 @@ public class InvertedIndex {
         if (p1 == null || p2 == null) {
             return new ArrayList<>();
         }
-        
+
         ArrayList<Posting> posting = new ArrayList<>();
         int index_p1 = 0;
         int index_p2 = 0;
-        
+
         Posting post1 = p1.get(index_p1);
         Posting post2 = p2.get(index_p2);
 
@@ -166,7 +166,6 @@ public class InvertedIndex {
 
     public void makeDictionary() {
         ArrayList<Posting> list = this.getSortedPostingList();
-
         for (int i = 0; i < list.size(); i++) {
             if (getDictionary().isEmpty()) {
                 Term term = new Term(list.get(i).getTerm());
@@ -186,8 +185,8 @@ public class InvertedIndex {
             }
         }
     }
-        
-    public int getDocFreq(String term){
+
+    public int getDocFreq(String term) {
         ArrayList<Term> result = getDictionary();
         int count = 0;
         for (int i = 0; i < result.size(); i++) {
@@ -196,7 +195,7 @@ public class InvertedIndex {
             }
         }
         return count;
-        
+
 //        Term tempTerm = new Term(term);
 //        int index = Collections.binarySearch(dictionary, tempTerm);
 //        if (index > 0) {
@@ -206,11 +205,11 @@ public class InvertedIndex {
 //            return -1;
 //        }
     }
-    
-    public double getInverseDocFreq(String term){
+
+    public double getInverseDocFreq(String term) {
         double n = getDocFreq(term);
         double N = listOfDocument.size();
-        return Math.log10(N/n);
+        return Math.log10(N / n);
 //        Term tempTerm = new Term(term);
 //        int index = Collections.binarySearch(dictionary, tempTerm);
 //        if (index > 0) {
@@ -221,8 +220,8 @@ public class InvertedIndex {
 //            return 0.0;
 //        }
     }
-    
-    public int getTermFreq(String term, int idDoc){
+
+    public int getTermFreq(String term, int idDoc) {
         Document doc = new Document();
         doc.setId(idDoc);
         int index = Collections.binarySearch(listOfDocument, doc);
@@ -238,7 +237,12 @@ public class InvertedIndex {
         }
         return 0;
     }
-    
+
+    public ArrayList<Posting> makeTFIDF(int idDocument) {
+        
+        return null;
+    }
+
     public ArrayList<Document> getListOfDocument() {
         return listOfDocument;
     }
