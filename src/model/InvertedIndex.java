@@ -93,14 +93,23 @@ public class InvertedIndex {
     }
     
     public int getDocFreq(String term){
-        ArrayList<Term> result = getDictionary();
-        int count = 0;
-        for (int i = 0; i < result.size(); i++) {
-            if (result.get(i).getTerm().equals(term)) {
-                count = result.get(i).getNumberOfDocument();
-            }
+//        ArrayList<Term> result = getDictionary();
+//        int count = 0;
+//        for (int i = 0; i < result.size(); i++) {
+//            if (result.get(i).getTerm().equals(term)) {
+//                count = result.get(i).getNumberOfDocument();
+//            }
+//        }
+//        return count;
+        
+        Term tempTerm = new Term(term);
+        int index = Collections.binarySearch(dictionary, tempTerm);
+        if (index > 0) {
+            ArrayList<Posting> tempPost = dictionary.get(index).getPostingList();
+            return tempPost.size();
+        }else{
+            return 0;
         }
-        return count;
     }
     
     public double getInverseDocFreq(String term){
