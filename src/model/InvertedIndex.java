@@ -257,7 +257,7 @@ public class InvertedIndex {
             return result;
         }
     }
-
+    
     public ArrayList<Document> getListOfDocument() {
         return listOfDocument;
     }
