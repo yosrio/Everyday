@@ -239,8 +239,20 @@ public class InvertedIndex {
     }
 
     public ArrayList<Posting> makeTFIDF(int idDocument) {
+        ArrayList<Term> terms = getDictionary();
+        ArrayList<Posting> result = new ArrayList<>();
         
-        return null;
+        for (int i = 0; i < terms.size(); i++) {
+            double w = getTermFreq(terms.get(i).getTerm(), idDocument) * getInverseDocFreq(terms.get(i).getTerm());
+            
+            Posting tempPost = new Posting();
+            tempPost.setTerm(terms.get(i).getTerm());
+            tempPost.setNumberOfTerm(getTermFreq(terms.get(i).getTerm(), idDocument));
+            tempPost.setWeight(w);
+            
+            result.add(tempPost);
+        }
+        return result;
     }
 
     public ArrayList<Document> getListOfDocument() {
