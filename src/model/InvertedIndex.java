@@ -246,8 +246,8 @@ public class InvertedIndex {
             return null;
         } else {
             doc = listOfDocument.get(cek);
-            
             ArrayList<Posting> result = doc.getListofPosting();
+            Collections.sort(result);
             for (int i = 0; i < result.size(); i++) {
                 double w = getTermFreq(result.get(i).getTerm(), idDocument) * getInverseDocFreq(result.get(i).getTerm());
                 result.get(i).setTerm(result.get(i).getTerm());

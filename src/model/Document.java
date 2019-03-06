@@ -70,7 +70,7 @@ public class Document implements Comparable<Document>{
                 }
             }
         }
-
+        Collections.sort(list);
         return list;
     }
 

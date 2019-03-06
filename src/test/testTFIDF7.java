@@ -58,13 +58,13 @@ public class testTFIDF7 {
 
         // tf
         // idf
-        String tempString2 = "shipment";
+        String tempString2 = "fire";
         int idDoc = 2;
         int result4 = index.getTermFreq(tempString2, idDoc);
         System.out.println("TF of " + tempString2 + " in idDoc = " + idDoc + " is " + result4);
         System.out.println("");
         // make arraylist of TFIDF
-        idDoc = 3;
+        idDoc = 1;
         ArrayList<Posting> tempDocWeight = index.makeTFIDF(idDoc);
         for (int i = 0; i < tempDocWeight.size(); i++) {
             System.out.println("term= " + tempDocWeight.get(i).getTerm()
