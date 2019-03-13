@@ -257,7 +257,33 @@ public class InvertedIndex {
             return result;
         }
     }
-    
+
+    public double getInnerProduct(ArrayList<Posting> p1,ArrayList<Posting> p2) {
+        double IP = 0;
+        for (int i = 0; i < p1.size(); i++) {
+            int pos = Collections.binarySearch(p2, p1.get(i));
+            if (pos >= 0) {
+                IP = IP + (p1.get(i).getWeight() * 
+                        p2.get(pos).getWeight());
+            }
+        }
+        return IP;
+    }
+
+    public ArrayList<Posting> getQueryPosting(String query) {
+        Document doc = new Document();
+        doc.setContent(query);
+        ArrayList<Posting> QP = doc.getListofPosting();
+        for (int i = 0; i < QP.size(); i++) {
+            double w = QP.get(i).getNumberOfTerm() * 
+                    getInverseDocFreq(QP.get(i).getTerm());
+
+            QP.get(i).setWeight(w);
+        }
+
+        return QP;
+    }
+
     public ArrayList<Document> getListOfDocument() {
         return listOfDocument;
     }
