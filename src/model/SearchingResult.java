@@ -9,7 +9,7 @@ package model;
  *
  * @author yosrio
  */
-class SearchingResult implements Comparable<SearchingResult> {
+public class SearchingResult implements Comparable<SearchingResult> {
 
     public static final int FAKTOR = 1000;
     private double similarity;
