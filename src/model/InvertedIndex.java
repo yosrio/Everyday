@@ -259,15 +259,15 @@ public class InvertedIndex {
     }
 
     public double getInnerProduct(ArrayList<Posting> p1,ArrayList<Posting> p2) {
-        double IP = 0;
+        double hasil = 0;
         for (int i = 0; i < p1.size(); i++) {
             int pos = Collections.binarySearch(p2, p1.get(i));
             if (pos >= 0) {
-                IP = IP + (p1.get(i).getWeight() * 
+                hasil = hasil + (p1.get(i).getWeight() * 
                         p2.get(pos).getWeight());
             }
         }
-        return IP;
+        return hasil;
     }
 
     public ArrayList<Posting> getQueryPosting(String query) {
@@ -277,13 +277,28 @@ public class InvertedIndex {
         for (int i = 0; i < QP.size(); i++) {
             double w = QP.get(i).getNumberOfTerm() * 
                     getInverseDocFreq(QP.get(i).getTerm());
-
             QP.get(i).setWeight(w);
         }
 
         return QP;
     }
 
+    public double getLengthOfPosting(ArrayList<Posting> posting){
+        return 0;
+    }
+    
+    public double getCosineSimilarity(ArrayList<Posting> posting, ArrayList<Posting> posting1){
+        return 0;
+    }
+    
+    public ArrayList<SearchingResult> searchTFIDF(String query){
+        return null;
+    }
+    
+    public ArrayList<SearchingResult> searchCosineSimilarity(String query){
+        return null;
+    }
+    
     public ArrayList<Document> getListOfDocument() {
         return listOfDocument;
     }
