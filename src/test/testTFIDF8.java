@@ -66,6 +66,7 @@ public class testTFIDF8 {
         // make arraylist of TFIDF
         idDoc = 1;
         ArrayList<Posting> tempDocWeight = index.makeTFIDF(idDoc);
+        System.out.println("Id Doc : " + idDoc);
         for (int i = 0; i < tempDocWeight.size(); i++) {
             System.out.println("term= " + tempDocWeight.get(i).getTerm()
                     + ", tf = " + tempDocWeight.get(i).getNumberOfTerm()
@@ -95,7 +96,7 @@ public class testTFIDF8 {
         }
         // panggil fungsi inner product
         double result1Product = index.getInnerProduct(queryPostingList, tempDocWeight);
-        System.out.println("Hasil inner product query dan doc1= " + result1Product);
+        System.out.println("\nHasil inner product query dan doc1= " + result1Product);
 
     }
 }

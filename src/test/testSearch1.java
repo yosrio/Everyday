@@ -45,9 +45,7 @@ public class testSearch1 {
                     + ", weight= " + tempPost.getWeight());
         }
 
-        System.out.println("Length of Dokumen = " + index.getLengthOfPosting(tempDocWeight));
-
-        String query = "silver gold truck";
+        String query = "gold silver truck";
         System.out.println("query = " + query);
         ArrayList<Posting> queryPostingList = index.getQueryPosting(query);
         for (int i = 0; i < queryPostingList.size(); i++) {
@@ -57,8 +55,9 @@ public class testSearch1 {
                     + ", weight= " + tempPost.getWeight());
         }
 
+        System.out.println("\nLength of Dokumen = " + index.getLengthOfPosting(tempDocWeight));
         // test cosine similarity
-        System.out.println("Cosine similarity = " + index.getCosineSimilarity(queryPostingList,
+        System.out.println("\nCosine similarity = " + index.getCosineSimilarity(queryPostingList,
                 tempDocWeight));
     }
 }
