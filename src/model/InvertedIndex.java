@@ -6,6 +6,10 @@
 package model;
 
 import com.sun.org.apache.xerces.internal.util.DOMUtil;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +17,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -309,7 +315,7 @@ public class InvertedIndex {
         ArrayList<SearchingResult> result = new ArrayList<SearchingResult>();
         // menghitung tfidf untuk kata yg dicari
         ArrayList<Posting> queryPost = this.getQueryPosting(query);
-        
+
         // perulangan sebanyak dokumen
         for (int i = 1; i <= listOfDocument.size(); i++) {
             // arraylist untuk menghitung tfidf untuk dokumen
@@ -317,7 +323,7 @@ public class InvertedIndex {
             // menghitung innerproduct
             double innerProduct = this.getInnerProduct(queryPost, tempDoc);
             // memasukan innerproduct dan dokumen ke searching result
-            SearchingResult doc = new SearchingResult(innerProduct, tempDoc.get(i-1).getDocument());
+            SearchingResult doc = new SearchingResult(innerProduct, tempDoc.get(i - 1).getDocument());
             // memasukan data variabel doc ke arraylist result
             result.add(doc);
         }
@@ -333,7 +339,7 @@ public class InvertedIndex {
         ArrayList<SearchingResult> result = new ArrayList<SearchingResult>();
         // menghitung tfidf untuk kata yg dicari
         ArrayList<Posting> queryPost = this.getQueryPosting(query);
-        
+
         // perulangan sebanyak dokumen
         for (int i = 1; i <= listOfDocument.size(); i++) {
             // arraylist untuk menghitung tfidf untuk dokumen
@@ -341,11 +347,11 @@ public class InvertedIndex {
             // menghitung similarity
             double similarity = this.getCosineSimilarity(queryPost, tempDoc);
             // memasukan similarity dan dokumen ke searching result
-            SearchingResult doc = new SearchingResult(similarity,tempDoc.get(i-1).getDocument());
+            SearchingResult doc = new SearchingResult(similarity, tempDoc.get(i - 1).getDocument());
             // memasukan data variabel doc ke arraylist result
             result.add(doc);
         }
-       // melakukan pengurutan
+        // melakukan pengurutan
         Collections.sort(result);
         // melakukan pembalikan urutan
         Collections.reverse(result);
@@ -368,4 +374,18 @@ public class InvertedIndex {
         this.dictionary = dictionary;
     }
 
+    public void readDirectory(File dir) {
+        File[] listFile = dir.listFiles();
+        int idDoc = 1;
+        for (int i = 0; i < listFile.length; i++) {
+            Document doc = new Document();
+            try {
+                doc.readFile(idDoc, listFile[i]);
+            } catch (IOException ex) {
+                Logger.getLogger(InvertedIndex.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            addNewDocument(doc);
+            idDoc++;
+        }
+    }
 }

@@ -33,7 +33,7 @@ public class testTFIDF1 {
         
         // panggil fungsi search
         index.makeDictionary();
-        ArrayList<Posting> result = index.search("machine learning inteligence");
+        ArrayList<Posting> result = index.search("shipment gold truck");
         // tampilkan isi document dan id-nya
         for (int i = 0; i < result.size(); i++) {
             System.out.println("id_doc = " +result.get(i).getDocument().getId());

@@ -42,6 +42,7 @@ public class testSearch2 {
         for (int i = 0; i < hasilCari1.size(); i++) {
             SearchingResult doc = hasilCari1.get(i);
             System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
+            System.out.println(doc.getSimilarity());
         }
 
         // searching
@@ -50,6 +51,7 @@ public class testSearch2 {
         for (int i = 0; i < hasilCari2.size(); i++) {
             SearchingResult doc = hasilCari2.get(i);
             System.out.println("IdDokumen = " + doc.getDocument().getId() + " : " + doc.getDocument().getContent());
+            System.out.println(doc.getSimilarity());
         }
     }
 }
