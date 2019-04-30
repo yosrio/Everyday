@@ -18,6 +18,8 @@ import org.apache.lucene.analysis.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.en.PorterStemFilter;
+import org.apache.lucene.analysis.id.IndonesianAnalyzer;
+import org.apache.lucene.analysis.id.IndonesianStemFilter;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
@@ -163,6 +165,29 @@ public class Document implements Comparable<Document> {
         TokenStream tokenStream = analyzer.tokenStream("myField", new StringReader(text));
 
         tokenStream = new PorterStemFilter(tokenStream);
+        StringBuilder sb = new StringBuilder();
+        CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+        try {
+            tokenStream.reset();
+            while (tokenStream.incrementToken()) {
+                String term = charTermAttribute.toString();
+                sb.append(term + " ");
+            }
+        } catch (IOException ex) {
+            System.out.println("Exception : " + ex);
+        }
+        content = sb.toString();
+    }
+    
+    public void IndonesianStemming(){
+        String text = content;
+        Version matchVersion = Version.LUCENE_7_7_0;
+        Analyzer analyzer = new IndonesianAnalyzer();
+        analyzer.setVersion(matchVersion);
+
+        TokenStream tokenStream = analyzer.tokenStream("myField", new StringReader(text));
+
+        tokenStream = new IndonesianStemFilter(tokenStream);
         StringBuilder sb = new StringBuilder();
         CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
         try {

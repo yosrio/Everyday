@@ -30,7 +30,7 @@ public class testTFIDF3 {
 
         index.makeDictionaryWithTermNumber();
         ArrayList<Term> result = index.getDictionary();
-
+        
         for (int i = 0; i < result.size(); i++) {
             System.out.println("====================================");
             System.out.println("Term = " + result.get(i).getTerm() + ", numberofDocument = "

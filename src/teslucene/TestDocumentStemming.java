@@ -17,8 +17,10 @@ public class TestDocumentStemming {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Document doc = new Document(1, "She is looking on my eyes");
-        doc.stemming();
+//        Document doc = new Document(1, "She is looking on my eyes");
+        Document doc = new Document(1, "aku berburu makanan, lalu membaca buku");
+//        doc.stemming();
+        doc.IndonesianStemming();
         System.out.println("Real Content: " + doc.getRealContent());
         System.out.println("Content Stemming: " + doc.getContent());
     }
