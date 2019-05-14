@@ -20,7 +20,7 @@ public class tesFileDokumen {
      */
     public static void main(String[] args) throws IOException {
         Document doc = new Document();
-        File file = new File("F:\\smstr 6\\PemrolehanInformasi\\BooleanRetrieval2\\dokumen\\dokumen1.txt");
+        File file = new File("F:\\smstr 6\\PemrolehanInformasi\\DocumentRetrieval\\dokumen\\dokumen1.txt");
         
         doc.readFile(1, file);
         System.out.println("Isi Dokumen:");

@@ -33,6 +33,7 @@ public class Document implements Comparable<Document> {
     private int id;
     private String content;
     private String realContent;
+    private ArrayList<Posting> listOfPosting = new ArrayList<Posting>();
 
     public Document() {
     }
@@ -40,12 +41,12 @@ public class Document implements Comparable<Document> {
     public Document(int id) {
         this.id = id;
     }
-    
+
     public Document(String content) {
         this.content = content;
         this.realContent = content;
     }
-    
+
     public Document(int id, String content) {
         this.id = id;
         this.content = content;
@@ -74,6 +75,14 @@ public class Document implements Comparable<Document> {
 
     public void setRealContent(String realContent) {
         this.realContent = realContent;
+    }
+
+    public ArrayList<Posting> getListOfPosting() {
+        return listOfPosting;
+    }
+
+    public void setListOfPosting(ArrayList<Posting> listOfPosting) {
+        this.listOfPosting = listOfPosting;
     }
 
     public String[] getListofTerm() {
@@ -130,8 +139,8 @@ public class Document implements Comparable<Document> {
     public String toString() {
         return "Document{" + "id=" + id + ", content=" + content + '}';
     }
-    
-    public void removeStopWords(){
+
+    public void removeStopWords() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -152,11 +161,11 @@ public class Document implements Comparable<Document> {
         } catch (IOException ex) {
             System.out.println("Exception : " + ex);
         }
-        
+
         content = sb.toString();
     }
-    
-    public void stemming(){
+
+    public void stemming() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -178,8 +187,8 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
-    
-    public void IndonesianStemming(){
+
+    public void IndonesianStemming() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new IndonesianAnalyzer();

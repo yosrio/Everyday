@@ -21,7 +21,7 @@ public class tesFileDokumen1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        File dir = new File("F:\\smstr 6\\PemrolehanInformasi\\BooleanRetrieval2\\dokumen");
+        File dir = new File("F:\\smstr 6\\PemrolehanInformasi\\DocumentRetrieval\\dokumen");
         InvertedIndex index = new InvertedIndex();
         index.readDirectory(dir);
         ArrayList<Document> listDoc = index.getListOfDocument();
